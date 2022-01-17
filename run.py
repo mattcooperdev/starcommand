@@ -43,13 +43,40 @@ def place_ships(board):
         while True:
             if board == COMP_BOARD: #cpu board will just be random
                 orientation, row, column = random.choice(["H", "V"]), random.randint(0,9), random.randint(0,9)
-                if check_ship_fit(ship_l, row, column, orientation)
+                if check_ship_fit(ship_l, row, column, orientation):
+                    #check for overlap of ship
+                    if overlap(board, row, column, orientation, ship_l) == False:
+                        #place ship
+                        if orientation == "H":
+                            for i in range(column, column + ship_l):
+                                board[row][i] = "X" 
+                        else:
+                            for i in range(row, row + ship_l):
+                                board[column][i] = "X"
+                        break
 
-def check_ship_fit():
-    pass
+def check_ship_fit(SHIP_LENGTH, row, column, orientation):
+    if orientation == "H":
+        if column + SHIP_LENGTH > 10:
+            return False
+        else:
+            return True
+    else:
+        if row + SHIP_LENGTH > 10:
+            return False
+        else:
+            return True
 
-def overlap():
-    pass
+def overlap(board, row, column, orientation, ship_l):
+    if orientation == "H":
+        for i in range(column, column + ship_l):
+            if board[row][i] == "X":
+                return True
+    else:
+        for i in range(row, row + ship_l):
+            if board[column][i] == "X":
+                return True
+    return False
 
 def player_input():
     pass
