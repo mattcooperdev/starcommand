@@ -25,8 +25,8 @@ PLAYER_BOARD = [[" "] * 10 for i in range(10)]
 PLAYER_GUESS_BOARD = [[" "] * 10 for i in range(10)]
 COMP_BOARD = [[" "] * 10 for i in range(10)]
 COMP_GUESS_BOARD = [[" "] * 10 for i in range(10)]
-NUMBERS_TO_LETTERS = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7, 
-'I':8, 'J':9}
+NUMBERS_TO_LETTERS = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 
+'F':5, 'G':6, 'H':7, 'I':8, 'J':9}
 
 def print_board(board):
     print("  A B C D E F G H I J")
@@ -42,7 +42,8 @@ def place_ships(board):
         #loop until ship fits and doesn't overlap
         while True:
             if board == COMP_BOARD: #cpu board will just be random
-                orientation, row, column = random.choice(["H", "V"]), random.randint(0,9), random.randint(0,9)
+                orientation, row, column = random.choice(["H", "V"]), 
+                random.randint(0,9), random.randint(0,9)
                 if check_ship_fit(ship_l, row, column, orientation):
                     #check for overlap of ship
                     if overlap(board, row, column, orientation, ship_l) == False:
