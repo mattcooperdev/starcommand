@@ -3,12 +3,20 @@
 import random
 
 SHIP_LENGTH = [2,3,3,4,5]
-PLAYER_BOARD = [[" "] * 10 for i in range(10)]
-PLAYER_GUESS_BOARD = [[" "] * 10 for i in range(10)]
-COMP_BOARD = [[" "] * 10 for i in range(10)]
-COMP_GUESS_BOARD = [[" "] * 10 for i in range(10)]
-NUMBERS_TO_LETTERS = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 
-'F':5, 'G':6, 'H':7}
+PLAYER_BOARD = [[" "] * 8 for i in range(8)]
+PLAYER_GUESS_BOARD = [[" "] * 8 for i in range(8)]
+COMP_BOARD = [[" "] * 8 for i in range(8)]
+COMP_GUESS_BOARD = [[" "] * 8 for i in range(8)]
+NUMBERS_TO_LETTERS = {
+    'A':0, 
+    'B':1, 
+    'C':2, 
+    'D':3, 
+    'E':4, 
+    'F':5, 
+    'G':6, 
+    'H':7
+    }
 
 def print_board(board):
     print("  A B C D E F G H")
@@ -126,7 +134,12 @@ def player_input(place_ship):
 
 
 def hit_count():
-    pass
+    count = 0
+    for row in board:
+        for column in row:
+            if column == "X":
+            count += 1
+    return count
 
 def turn(board):
     pass
