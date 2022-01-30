@@ -231,13 +231,14 @@ class Board:
         """
         craft.damaged_tiles.append(True)
         if len(craft.damaged_tiles) == craft.length:
-            self.craft_remain()
+            self.craft_remaining()
 
     def update_board(self, guess, result, opponent):
         """
         Updates board with hit or miss guess
         """
         if result is False:
+            #miss
             self.guess_board[guess[0]][guess[1]] = "~"
             opponent.guess_board[guess[0]][guess[1]] = "~"
             #only show user view
@@ -248,6 +249,7 @@ class Board:
             print(f"{self.owner} missed!")
         
         else:
+            #hit
             self.guess_board[guess[0]][guess[1]] = "X"
             opponent.guess_board[guess[0]][guess[1]] = "X"
             #only show user view
@@ -258,11 +260,18 @@ class Board:
             print(f"{self.owner} made a perfect Hit!")
             
 
-    def craft_remain():
-        pass
+    def craft_remaining(self):
+        """
+        Reduce fleet by 1
+        """
+        self.number_of_craft -= 1
+        return self.number_of_craft
 
-    def is_fleet_destroyed():
-        pass
+    def is_fleet_destroyed(self):
+        if self.number_of_craft == 0:
+            return False
+        else:
+            return True
 
 
 # SHIP_LENGTH = [2,3,3,4,5]
@@ -278,59 +287,3 @@ class Board:
 #     'G':6, 
 #     'H':7
 #     }
-
-
-
-
-
-# def turn(board):
-#     if board == PLAYER_GUESS_BOARD:
-#         row, column = player_input(PLAYER_GUESS_BOARD)
-#         #check if already guessed
-#         if board[row][column] == "-": 
-#             turn(board)
-#         #check if already hit
-#         elif board[row][column] == "X":
-#             turn(board)
-#         #check comp board for hit or miss
-#         elif COMP_BOARD[row][column] == "X":
-#             board[row][column] = "X"
-#         else:
-#             board[row][column] = "-"
-#     else:
-#         #random comp turn for valid hit or miss
-#         row, column = random.randint(0, 7), random.randint(0, 7)
-#         if board == PLAYER_GUESS_BOARD:
-#             row, column = user_input(PLAYER_GUESS_BOARD)
-#         if board[row][column] == "-":
-#             turn(board)
-#         elif board[row][column] == "X":
-#             turn(board)
-#         elif COMP_BOARD[row][column] == "X":
-#             board[row][column] = "X"
-#         else:
-#             board[row][column] = "-"
-
-# place_ships(COMP_BOARD)
-# print_board(COMP_BOARD)
-# print_board(PLAYER_BOARD)
-# place_ships(PLAYER_BOARD)
-
-# while True:
-    #player turn
-    # while True:
-    #     print('Please give a location to strike')
-    #     print_board(PLAYER_GUESS_BOARD)
-    #     turn(PLAYER_GUESS_BOARD)
-    #     break
-    # if hit_count(PLAYER_GUESS_BOARD) == 17:
-    #     print("You win!")
-    #     break
-    # #comp turn
-    # while True:
-    #     turn(COMP_GUESS_BOARD)
-    #     break
-    # print_board(COMP_GUESS_BOARD)
-    # if hit_count(COMP_GUESS_BOARD) == 17:
-    #     print("All of the fleet have been destroyed ")
-    #     break
