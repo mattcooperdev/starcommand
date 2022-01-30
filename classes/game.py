@@ -1,5 +1,6 @@
 import string
 # from getch import pause
+from .player import Player
 
 class Game:
     """
@@ -13,12 +14,12 @@ class Game:
 
         print("""
                  _____ _                         
-                / ____| |                                         
+                / ____| |                                       
                | (___ | |_ __ _ _ __                              
                 \___ \| __/ _` | '__|                             
                 ____) | || (_| | |                                
-               |_____/ \__\__,_|_|                              _ 
-                / ____|                                        | |
+               |_____/ \__\__,_|_|                             _ 
+                / ____|                                       | |
                | |     ___  _ __ ___  _ __ ___   __ _ _ __   _| |
                | |    / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` |
                | |___| (_) | | | | | | | | | | | (_| | | | | (_| |
@@ -107,3 +108,6 @@ class Game:
         del(player2)
         self.clear_terminal()
         self.welcome()
+
+if __name__ == '__main__':
+    game = Game()
