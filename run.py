@@ -224,8 +224,14 @@ class Board:
         else:
             return False
 
-    def update_damage():
-        pass
+    def update_damage(self, craft):
+        """
+        Runs through ship damage and 
+        updates when necessary
+        """
+        craft.damaged_tiles.append(True)
+        if len(craft.damaged_tiles) == craft.length:
+            self.craft_remain()
 
     def update_board():
         pass
