@@ -30,7 +30,7 @@ class Game(ClearDisplayHelper):
         options_menu = True
 
         while options_menu:
-            options = input("Press the 'S' key to play").lower().strip(" ")
+            options = input("Press the 'S' key to play: \n").lower().strip(" ")
             if options == "s":
                 self.clear_terminal()
                 self.set_players()
@@ -83,7 +83,7 @@ class Game(ClearDisplayHelper):
         """
         valid_name = False
         while not valid_name:
-            name = input("What is your name Commander?")
+            name = input("What is your name Commander? \n")
 
             if len(name.strip(" ")) == 0:
                 print("I need to take something from you..")

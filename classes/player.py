@@ -13,7 +13,7 @@ class Player():
             self.board = Board(name)
         else:
             auto_place = self.quick_start()
-            self.board = Board(name, auto)
+            self.board = Board(name, auto_place)
         self.guesses = []
 
     @staticmethod
