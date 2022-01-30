@@ -151,6 +151,30 @@ class Board:
                     break
         return craft.coordinates                 
 
+    def direction_input(self):
+        """
+        Ask user for direction to place craft. Only down or right as 
+        full compass is illogical in this instance. Loops until valid
+        inout given. 
+        """
+        invalid_input = True
+        while invalid_input:
+            craft.direction = input(
+                "Which direction would you want the craft to face?\n"
+                "To the (r)ight or (d)own: \n"
+            ).lower().strip(" ")
+            if craft.direction == "right" or craft.direction == "r":
+                invalid_input = False
+                return "right"
+            elif craft.direction == "down" or craft.direction == "d":
+                invalid_input = False
+                return "down"
+            else:
+                print(
+                    "I need a valid direction.\n"
+                    'Please input "r", "d", "right" or "down":')
+
+    
 
 
 
@@ -171,65 +195,6 @@ class Board:
 #     }
 
 
-
-# def place_ships(board):
-#     #loop through length of ships
-#     for ship_l in SHIP_LENGTH:
-#         #loop until ship fits and doesn't overlap
-#         while True:
-#             if board == COMP_BOARD:
-#                 orientation, row, column = random.choice(["H", "V"]), random.randint(0,7), random.randint(0,7)
-#                 if check_ship_fit(ship_l, row, column, orientation):
-#                     #check if ship overlaps
-#                     if overlap(board, row, column, orientation, ship_l) == False:
-#                         #place ship
-#                         if orientation == "H":
-#                             for i in range int((column, column + ship_l)-1):
-#                                 board[row][i] = "X"
-#                         else:
-#                             for j in range int((row, row + ship_l)-1):
-#                                 range -= 1
-#                                 board[column][i] = "X"
-#                         break
-#             else:
-#                 place_ships = True
-#                 print('Place the ship with a length of ' + str(ship_l))
-#                 row, column, orientation = player_input(place_ships)
-#                 if check_ship_fit(ship_l, row, column, orientation):
-#                     #check if ship overlaps
-#                         if ship_overlaps(board, row, column, orientation, ship_l) == False:
-#                             #place ship
-#                             if orientation == "H":
-#                                 for i in range(column, column + ship_l):
-#                                     board[row][i] = "X"
-#                             else:
-#                                 for i in range(row, row + ship_l):
-#                                     board[i][column] = "X"
-#                             print_board(PLAYER_BOARD)
-#                             break 
-
-# def check_ship_fit(SHIP_LENGTH, row, column, orientation):
-#     if orientation == "H":
-#         if row + SHIP_LENGTH > 8:
-#             return False
-#         else:
-#             return True
-#     else:
-#         if column + SHIP_LENGTH > 8:
-#             return False
-#         else:
-#             return True
-
-# def overlap(board, row, column, orientation, ship_l):
-#     if orientation == "H":
-#         for i in range(row, row + ship_l):
-#             if board[row][i] == "X":
-#                 return True
-#     else:
-#         for i in range(column, column + ship_l):
-#             if board[column][i] == "X":
-#                 return True
-#     return False
 
 # def player_input(place_ships):
 #     if place_ships == True:
