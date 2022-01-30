@@ -174,7 +174,17 @@ class Board:
                     "I need a valid direction.\n"
                     'Please input "r", "d", "right" or "down":')
 
-    
+    @staticmethod
+    """
+    Check for taken space before ship can be placed
+    """
+    def is_space_taken(craft, taken_space, next_space):
+        for list in taken_space:
+            for _ in list:
+                if next_space in list:
+                    return True
+                elif craft.start_point in list:
+                    return True
 
 
 
