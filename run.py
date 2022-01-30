@@ -74,7 +74,7 @@ class Board:
                 #checks coord input is valid and creates craft
                 start_point = self.coord_valid(start_point)
                 direction = self.direction_input()
-                craft_inst = craft_obj[i](start_point, direction (start_point))
+                craft_inst = craft_obj[i](start_point, direction, (start_point))
             
             self.build_craft(self.auto, craft_inst, taken_coords)
             taken_coords.append(craft_inst.coordinates)
@@ -87,8 +87,69 @@ class Board:
                 self.print_board()
         return fleet
 
-    def build_craft(self, auto_place, craft, taken_coords):
-        pass
+    def build_craft(self, auto_placement, craft, taken_coords):
+        """
+        Builds craft in selected direction and lets User know if 
+        space is taken. 
+        """
+        selected_placement = True
+
+        while selected_placement:
+            temp_craft = []
+            temp_craft.append(craft.start_point)
+            #checks which axis start point of craft is and adds 1
+            for i in range(1, craft.length):
+                if craft.direction == "d" or craft.direction == "down":
+                    next_space = (craft.start_point[0] + i, craft.start_point[1])
+                    add_idx = 0
+            
+                elif craft.direction == "r" or craft.direction == "right":
+                    next_space = (craft.start_point[0], craft.start_point[1] + 1)
+                    add_idx = 1
+
+            taken_space = self.is_space_taken(ship, taken_coords, next_space)
+            #check for craft leaving baord and asks for new start point if needs to
+            if craft.start_point[add_idx] + \
+                    (craft.length - 1) > 9:
+
+                if auto_placement:
+                    craft.start_point = (random.randint(0, 9), random.randint(0, 9))
+                    craft.direction = random.choice(["r", "d"])
+                    break
+                else:
+                    print("Would place craft out of bounds")
+                    craft.start_point = input(
+                        "Pick a different start coordinate for "
+                        f"your {craft.name}. \nPlease enter row then column "
+                        "e.g 1A: \n").strip(" ")
+                    craft.start_point = self.coord_valid(craft.start_point)
+                    craft.direction = self.direction_input()
+                    break
+            #If next space is not taken then add to temp list, check length
+            #and if match then return to coords
+            elif not taken_space:
+                temp_craft.append(next_space)
+                if len(temp_craft) == craft.length:
+                    craft.coordinates = temp_craft
+                    selected_placement = False
+                    return craft.coordinates
+
+            #check remainder of spaces and if any taken will ask for new coords
+            else:
+                if auto_placement:
+                    craft.start_point = (random.randint(0, 9), random.randint(0, 9))
+                    craft.direction = random.choice(["r", "d"]) 
+                    break
+                elif not auto_placement:
+                    print("You already placed a craft there Commander")
+                    craft.start_point = input(
+                        "Pick a different start coordinate for "
+                        f"your {craft.name}. \nPlease enter row then column "
+                        "e.g 1A: \n").strip(" ")
+                    craft.start_point = self.coord_valid(craft.start_point)
+                    craft.direction = self.direction_input()
+                    break
+        return craft.coordinates                 
 
 
 
