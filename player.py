@@ -35,5 +35,39 @@ class Player():
             else:
                 print(
                     f"I do not understand Commander {name}"
-                    "Please type a valid input: \n"
-                )
+                    "Please type a valid input: \n")
+
+    def take_shot(self):
+        """
+        Takes guess coordinates randomly or by input
+        and returns the guess
+        """
+        valid_guess = False
+        while not valid_guess:
+            if self.name == "Computer":
+                guess_coord = (random.randint(0, 9), random.randint(0, 9))
+                previous_guess = guess_coord in self.guesses
+                if previous_guess:
+                    continue
+
+                self.guesses.append(guess_coord)
+                valid_guess = True
+            else:
+                guess_coord = input(
+                    f"Commander {name}, what are your coordinates? :\n"
+                    "Enter row then column e.g. 5,C: \n").strip(" ")
+
+                guess_coord = self.coord_valid(guess_coord)
+                previous_guess = guess_coord in self.guesses
+
+                if previous_guess:
+                    print(
+                        "Commander you have already fired there..."
+                    )
+                    continue
+                else:
+                    self.board.print_board()
+                    self.guesses.append(guess_coord)
+                    valid_guess = True
+        return guess_coord
+
