@@ -42,8 +42,55 @@ class Board:
         print("  +-+-+-+-+-+-+-+-+-+")
         row_number = 1
         for row in board:
-            print("%d|%s|" % (row_number, "|".join(row)))
+            print("%d|%s|" % (row_number, "|".join(row)))# from https://youtu.be/tF1WRCrd_HQ
             row_number += 1
+
+    def build_fleet(self):
+        """
+        Takes one of each craft and asks for start point
+        and direction. Builds full craft when looking at length
+        and returns list
+        """
+        fleet = []
+        taken_coords = []
+        craft_obj = [
+        #Need to fill in craft details from craft class
+        ]
+        for i in range(self.number_of_craft):
+            if self.auto_place:
+                #Create random setup
+                random_start = (random.randint(0, 9), random.randint(0, 9))
+                rand_direction = random.choice(["r", "d"])
+                craft_inst = craft_obj[i](random_start, rand_direction, (random_start))
+
+            else: 
+                #manual setup
+                self.print_board()
+                start_point = input(
+                    f"Commander {self.owner} where shall we place the {craft_obj[i].name}?\n"
+                    f"It is {craft_obj[i].length} long."
+                    "\nPlease enter your coordinates (e.g C4)\n"
+                ).strip(" ")
+                #checks coord input is valid and creates craft
+                start_point = self.coord_valid(start_point)
+                direction = self.direction_input()
+                craft_inst = craft_obj[i](start_point, direction (start_point))
+            
+            self.build_craft(self.auto, craft_inst, taken_coords)
+            taken_coords.append(craft_inst.coordinates)
+
+            self.manual_position(craft_inst, self.auto_place)
+
+            fleet.append(craft_inst)
+        if self.auto_place:
+            if self.owner != "Computer":
+                self.print_board()
+        return fleet
+
+    def build_craft(self, auto_place, craft, taken_coords):
+        pass
+
+
 
 
 # SHIP_LENGTH = [2,3,3,4,5]
