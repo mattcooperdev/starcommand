@@ -175,10 +175,10 @@ class Board:
                     'Please input "r", "d", "right" or "down":')
 
     @staticmethod
-    """
-    Check for taken space before ship can be placed
-    """
     def is_space_taken(craft, taken_space, next_space):
+        """
+        Check for taken space before ship can be placed
+        """
         for list in taken_space:
             for _ in list:
                 if next_space in list:
@@ -186,6 +186,26 @@ class Board:
                 elif craft.start_point in list:
                     return True
 
+    def fleet_coords(self):
+        """
+        Makes dict of fleet coordinates with the craft id
+        """
+        craft_record = {}
+        for i in range(self.fleet_size):
+            craft_record.update(
+                dict(zip(self.fleet[i].coordinates, self.fleet[i].id_list)))
+        return craft_record
+
+    def manual_position(self, craft, auto_placement=False):
+        """
+        Prints board of chosen ship locations for manual placement
+        """
+        if self.owner != "Computer":
+            for i in range(craft.length):
+                self.board[craft.coordinates[i][0]][craft.coordinates[i][1]] = craft.id_list[i]
+            if not auto_placement:
+                if self.owner != "Computer":
+                    self.print_board()
 
 
 # SHIP_LENGTH = [2,3,3,4,5]
@@ -311,4 +331,3 @@ class Board:
     # if hit_count(COMP_GUESS_BOARD) == 17:
     #     print("All of the fleet have been destroyed ")
     #     break
-
