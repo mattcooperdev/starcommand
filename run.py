@@ -207,8 +207,22 @@ class Board:
                 if self.owner != "Computer":
                     self.print_board()
 
-    def check_shot():
-        pass
+    def check_shot(self, guess):
+        """
+        Checks guess from fleet dictionary, 
+        calls method to update damage of craft
+        """
+        result = self.fleet_map
+        result = result.get(guess)
+        craft = None
+        if result:
+            for i in range(5):
+                craft = self.fleet[i]
+                if result is self.fleet[i].id_list[0]:
+                    self.update_damage(craft)
+                    return True
+        else:
+            return False
 
     def update_damage():
         pass
@@ -239,52 +253,6 @@ class Board:
 #     'H':7
 #     }
 
-
-
-# def player_input(place_ships):
-#     if place_ships == True:
-#         while True:
-#             try:
-#                 orientation = input("Would you like your craft to be placed (H)orizontally or (V)ertically?: ").upper()
-#                 if orientation == "H" or orientation == "V":
-#                     break
-#             except TypeError:
-#                 print('I did not understand your input. Please enter H or V.')
-#         while True:
-#             try:
-#                 row = input("Which row would you like to place your craft? ")
-#                 if row in '12345678':
-#                     row = int(row) - 1
-#                     break
-#             except ValueError:
-#                 print('I need a number between 1-8: ')
-#         while True:
-#             try:
-#                 column = input('Now which column would you like to place your craft between A-H: ').upper()
-#                 if column in 'ABCDEFGH':
-#                     column = NUMBERS_TO_LETTERS[column]
-#                     break
-#             except KeyError:
-#                 print('Commander I need a letter between A-H: ')
-#         return row, column, orientation
-#     else:
-#         while True:
-#             try:
-#                 row = input("Which row would you like to place your craft? ")
-#                 if row in '12345678':
-#                     row = int(row) - 1
-#                     break
-#             except ValueError:
-#                 print('I need a number between 1-8: ')
-#         while True:
-#             try:
-#                 column = input('Now which column would you like to place your craft between A-H: ').upper()
-#                 if column in 'ABCDEFGH':
-#                     column = NUMBERS_TO_LETTERS[column]
-#                     break
-#             except KeyError:
-#                 print('Commander I need a letter between A-H: ')
-#         return row, column
 
 
 # def hit_count():
