@@ -71,3 +71,18 @@ class Player():
                     valid_guess = True
         return guess_coord
 
+    def player_turn(self, opponent):
+        """
+        User guess and then relevant board is updated
+        """
+        print(f"{self.name}'s turn")
+        guess = self.take_shot()
+        guess_hit_check = opponent.board.check_shot(guess)
+        #update board
+        self.board.update_board(guess, guess_hit_check, opponent)
+        if self.name != "Computer":
+            self.board.print_board()
+
+        else:
+            opponent.board.print_board()
+
