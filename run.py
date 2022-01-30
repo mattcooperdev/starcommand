@@ -233,8 +233,30 @@ class Board:
         if len(craft.damaged_tiles) == craft.length:
             self.craft_remain()
 
-    def update_board():
-        pass
+    def update_board(self, guess, result, opponent):
+        """
+        Updates board with hit or miss guess
+        """
+        if result is False:
+            self.guess_board[guess[0]][guess[1]] = "~"
+            opponent.guess_board[guess[0]][guess[1]] = "~"
+            #only show user view
+            if self.owner != "Computer":
+                self.print_board()
+            else:
+                opponent.board.print_board()
+            print(f"{self.owner} missed!")
+        
+        else:
+            self.guess_board[guess[0]][guess[1]] = "X"
+            opponent.guess_board[guess[0]][guess[1]] = "X"
+            #only show user view
+            if self.owner != "Computer":
+                self.print_board()
+            else:
+                opponent.board.print_board()
+            print(f"{self.owner} made a perfect Hit!")
+            
 
     def craft_remain():
         pass
@@ -245,9 +267,7 @@ class Board:
 
 # SHIP_LENGTH = [2,3,3,4,5]
 # PLAYER_BOARD = [[" "] * 8 for i in range(8)]
-# PLAYER_GUESS_BOARD = [[" "] * 8 for i in range(8)]
-# COMP_BOARD = [[" "] * 8 for i in range(8)]
-# COMP_GUESS_BOARD = [[" "] * 8 for i in range(8)]
+
 # NUMBERS_TO_LETTERS = {
 #     'A':0, 
 #     'B':1, 
@@ -261,13 +281,7 @@ class Board:
 
 
 
-# def hit_count():
-#     count = 0
-#     for row in board:
-#         for column in row:
-#             if column == "X":
-#                 count += 1
-#     return count
+
 
 # def turn(board):
 #     if board == PLAYER_GUESS_BOARD:
