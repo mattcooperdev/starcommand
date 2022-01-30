@@ -1,4 +1,4 @@
-import pprint
+import string
 # from getch import pause
 
 class Game:
@@ -98,3 +98,12 @@ class Game:
             print(f"Welcome Commader {name} ")
             return name
 
+    def restart_game(self, player1, player2):
+        """
+        Deletes all instances of player obj, ships and board.
+        Takes user back to welcome
+        """
+        del(player1)
+        del(player2)
+        self.clear_terminal()
+        self.welcome()
