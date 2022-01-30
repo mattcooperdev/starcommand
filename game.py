@@ -1,5 +1,5 @@
 import pprint
-from getch import pause
+# from getch import pause
 
 class Game:
     """
@@ -11,21 +11,20 @@ class Game:
     def welcome(self):
 
 
-        print(""
-             _____                                         
-            / ____| |                                         
-            | (___ | |_ __ _ _ __                              
-             \__.  \| __/ _` | '__|                             
-            ____) | || (_| | |                                
-            |_____/ \__\__,_|_|                              _ 
-            / ____|                                         | |
-            | |     ___  _ __ ___  _ __ ___   __ _ _ __   __| |
-            | |    / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` |
-            | |___| (_) | | | | | | | | | | | (_| | | | | (_| |
-             \_____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|
-                                                                
+        print("""
+                                            
+                 / ____| |                                         
+                | (___ | |_ __ _ _ __                              
+                 \___ \| __/ _` | '__|                             
+                ____) | || (_| | |                                
+               |_____/ \__\__,_|_|                              _ 
+                / ____|                                        | |
+                | |     ___  _ __ ___  _ __ ___   __ _ _ __   _| |
+               | |    / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` |
+               | |___| (_) | | | | | | | | | | | (_| | | | | (_| |
+                \_____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|                                                      
 
-        "")
+        """)
 
         options_menu = True
 
@@ -75,4 +74,27 @@ class Game:
                 pause("Press any key to go to the main menu")
                 self.restart_game(player, computer)
                 break
-            
+
+    @staticmethod
+    def name_input():
+        """
+        Get name and check validity
+        """
+        valid_name = False
+        while not valid_name:
+            name = input("What is your name Commander?")
+
+            if len(name.strip(" ")) == 0:
+                print("I need to take something from you..")
+                continue
+
+            elif name.lower() == "computer":
+                print("If there is any computer on board I would"
+                "not think it was you!"
+                "Please select something other than that")
+                continue
+
+            name = string.capwords(name)
+            print(f"Welcome Commader {name} ")
+            return name
+
