@@ -1,8 +1,8 @@
 import string
-# from getch import pause
 from .player import Player
+from.helpers import ClearDisplayHelper
 
-class Game:
+class Game(ClearDisplayHelper):
     """
     Holds main game by calling objects from classes
     """

@@ -1,10 +1,10 @@
 
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 from classes.game import Game
-from classes.mixins import ClearDisplayMixin
+from classes.helpers import ClearDisplayHelper
 
 if __name__ == '__main__':
-    ClearDisplayMixin.clear_display()
+    ClearDisplayHelper.clear_terminal()
     game = Game()
 
 # PLAYER_BOARD = [[" "] * 8 for i in range(8)]

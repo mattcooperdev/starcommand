@@ -1,8 +1,9 @@
 import random
 import time
 from .craft import AsteroidDodger, Blaster, CometKiller, StarChaser, Destroyer
+from .helpers import InputHelper, ClearDisplayHelper
 
-class Board: 
+class Board(InputHelper, ClearDisplayHelper): 
     board_size = 10
     fleet_size = 5
 
