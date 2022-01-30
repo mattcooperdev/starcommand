@@ -1,5 +1,5 @@
 import random
-import time
+from time import sleep
 from .craft import AsteroidDodger, Blaster, CometKiller, StarChaser, Destroyer
 from .helpers import InputHelper, ClearDisplayHelper
 
@@ -85,7 +85,7 @@ class Board(InputHelper, ClearDisplayHelper):
                 self.print_board()
                 start_point = input(
                     f"Commander {self.owner} where shall we place the {craft_obj[i].name}?\n"
-                    f"It is {craft_obj[i].length} long."
+                    f"It is {craft_obj[i].length} spaces long."
                     "\nPlease enter your coordinates (e.g 2,4)\n"
                 ).strip(" ")
                 #checks coord input is valid and creates craft
@@ -182,14 +182,14 @@ class Board(InputHelper, ClearDisplayHelper):
         """
         invalid_input = True
         while invalid_input:
-            craft.direction = input(
+            craft_direction = input(
                 "Which direction would you want the craft to face?\n"
                 "To the (r)ight or (d)own: \n"
             ).lower().strip(" ")
-            if craft.direction == "right" or craft.direction == "r":
+            if craft_direction == "right" or craft_direction == "r":
                 invalid_input = False
                 return "right"
-            elif craft.direction == "down" or craft.direction == "d":
+            elif craft_direction == "down" or craft_direction == "d":
                 invalid_input = False
                 return "down"
             else:
@@ -264,35 +264,37 @@ class Board(InputHelper, ClearDisplayHelper):
         if result is False:
             #miss
             self.guess_board[guess[0]][guess[1]] = "~"
-            opponent.guess_board[guess[0]][guess[1]] = "~"
+            opponent.board.board[guess[0]][guess[1]] = "~"
             #only show user view
             if self.owner != "Computer":
                 self.print_board()
             else:
                 opponent.board.print_board()
             print(f"{self.owner} missed!")
+            sleep(2)
         
         else:
             #hit
             self.guess_board[guess[0]][guess[1]] = "X"
-            opponent.guess_board[guess[0]][guess[1]] = "X"
+            opponent.board.board[guess[0]][guess[1]] = "X"
             #only show user view
             if self.owner != "Computer":
                 self.print_board()
             else:
                 opponent.board.print_board()
             print(f"{self.owner} made a perfect Hit!")
+            sleep(2)
             
 
     def craft_remaining(self):
         """
         Reduce fleet by 1
         """
-        self.number_of_craft -= 1
-        return self.number_of_craft
+        self.fleet_size -= 1
+        return self.fleet_size
 
     def is_fleet_destroyed(self):
-        if self.number_of_craft == 0:
+        if self.fleet_size == 0:
             return False
         else:
             return True
