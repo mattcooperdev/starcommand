@@ -207,6 +207,21 @@ class Board:
                 if self.owner != "Computer":
                     self.print_board()
 
+    def check_shot():
+        pass
+
+    def update_damage():
+        pass
+
+    def update_board():
+        pass
+
+    def craft_remain():
+        pass
+
+    def is_fleet_destroyed():
+        pass
+
 
 # SHIP_LENGTH = [2,3,3,4,5]
 # PLAYER_BOARD = [[" "] * 8 for i in range(8)]
