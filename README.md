@@ -159,44 +159,42 @@ PEP8 online [(here)](http://pep8online.com/) was used to run through and check c
 
 ---
   
-# **Deployment**
+## **Deployment**
 
-## ***Playing on a Local machine or via Gitpod Terminal:***
-This project was developed by forking a [specialized Code Institute template](https://github.com/Code-Institute-Org/python-essentials-template) which simulates a terminal in the web browser. Due to this, I optimized the game to work via the [final Heroku deployment](https://dnlbowers-battleship.herokuapp.com/), and I do not recommend playing it locally. That said, I have included this section to give you a choice.  
+### Heroku
 
-1. Navigate to the [GitHub repository](https://github.com/dnlbowers/battleships), and follow [these steps to clone the project](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) into your IDE of choice.   
-   
-   * **Gitpod** only **requires** you to have the **web extension** installed and **click** the **green Gitpod button** from the repositories main page. If you are **using Gitpod** please **skip step 2** below as you do not require a virtual environment to protect your machine.  
-  
-1. **Create** the **virtual environment** with the terminal command **"python3 -m venv venv".** Once complete add the "venv" file to you're ".gitignore" file and use the terminal command **"venv\Scripts\activate.bat" to activate it.**
-   
-   * ***IMPORTANT*** If developing locally on your device, ensure you **set up/activate the virtual environment before installing/generating the requirements.txt file**; failure to do this will pollute your machine and put other projects at 
- 
-1. **Install the requirements** listed in requirements.txt using the terminal command  **"pip3 install -r requirements.txt"**
-   * Kindly note that since I developed the project from scratch and installed the required libraries as progressed **I have already included a requirements.txt for this app** by using the terminal command **"pip3 freeze > requirements.txt"** to generate it.
+This application has been deployed from Github using Heroku. Here's how:
 
-## ***Final Deployment to Heroku:***  
-  
-The project was deployed to [Heroku](https://www.heroku.com) using the below procedure:-    
-  
-1. **Log in to Heroku** or create an account if required.
-1. **click** the button labeled **New** from the dashboard in the top right corner, just below the header.
-1. From the drop-down menu **select "Create new app"**.
-1. **Enter a unique app name**. I combined my GitHub user name and the game's name with a dash between them (dnlbowers-battleship) for this project.
-1. Once the web portal shows the green tick to confirm the name is original **select the relevant region.** In my case, I chose Europe as I am in Malta.
-1.  When happy with your choice of name and that the correct region is selected, **click** on the **"Create app" button**.
-1. This will bring you to the project "Deploy" tab. From here, navigate to the **settings tab** and scroll down to the **"Config Vars" section**. 
-1. **Click** the button labelled **"Reveal Config Vars"** and **enter** the **"key" as port**, the **"value" as 8000** and **click** the **"add"** button.
-1. Scroll down to the **buildpacks section of the settings page** and click the button labeled **" add buildpack," select "Python," and click "Save Changes"**.
-1. **Repeat step 11 but** this time **add "node.js" instead of python**. 
-   * ***IMPORTANT*** The buildpacks must be in the correct order. If node.js is listed first under this section, you can click on python and drag it upwards to change it to the first buildpack in the list.
-1. Scroll back to the top of the settings page, and **navigate to the "Deploy" tab.**
-1. From the deploy tab **select Github as the deployment method**.
-1. **Confirm** you want to **connect to GitHub**.
-1. **Search** for the **repository name** and **click** the **connect** button next to the intended repository.
-1. From the bottom of the deploy page **select your preferred deployment type** by follow one of the below steps:  
-   * Clicking either "Enable Automatic Deploys" for automatic deployment when you push updates to Github.  
-   * Select the correct branch for deployment from the drop-down menu and click the "Deploy Branch" button for manual deployment. 
+1. Create an account at heroku.com
+2. Create a new app, add app name and your region
+3. Click on create app
+4. Go to "Settings"
+5. Under Config Vars, add your sensitive data (creds.json for example)
+6. For this project, I set buildpacks to heroku/python and heroku/nodejs and in that order.
+7. You must then create a Config Var called PORT. Set this to 8000.
+8. Go to "Deploy" and at "Deployment method", click on "Connect to Github"
+9. Enter your repository name and click on it when it shows below
+10. Choose the branch you want to buid your app from
+11. If desired, click on "Enable Automatic Deploys", which keeps the app up to date with your Github repository
+
+### Forking the GitHub Repository 
+
+By forking this GitHub repository you are making a copy of the original to view or make changes without affecting the original. You can do this by following these steps...
+
+1. Log into your GitHub account and find the [repository](https://github.com/sarahjameson/-CI-PP3-Battleship).
+2. Click 'Fork' (last button on the top right of the repository page).
+3. You will then have a copy of the repository in your own GitHub account. 
+
+### Making a Local Clone
+
+1. Log into your GitHub account and find the [repository](https://github.com/sarahjameson/-CI-PP3-Battleship).
+2. Click on the 'Code' button (next to 'Add file'). 
+3. To clone the repository using HTTPS, under clone with HTTPS, copy the link.
+4. Then open Git Bash.
+5. Change the current working directory to where you want the cloned directory to be made.
+6. In your IDE's terminal type 'git clone' followed by the URL you copied.
+7. Press Enter. 
+8. Your local clone will now be made.
 ---
 
 ## **Credits**
