@@ -31,7 +31,7 @@ class InputHelper():
         """
         Notifies input is invalid, requests new input
         """
-        give_again = input("Your input is not valid. "
+        give_again = input("Your input is not valid.\n "
         "Please give two numbers for row and column \n"
         "between 0 and 9\n").strip(" ")
         return give_again

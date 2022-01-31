@@ -17,7 +17,7 @@ class AsteroidDodger(Craft):
     id_list = ["A"] * length
 
 class Blaster(Craft):
-    name = "Blaster"
+    name = "Blaster Ship"
     length = 4
     id_list = ["B"] * length
 
