@@ -52,7 +52,7 @@ As a User, I want to be able to:
 ## ***Flow Chart***
 To explain the flow of the game, I created a flow chart:
 
-![Game Logic Flow](docs/screenshots/star-command-flow.png)
+![Game Logic Flow](docs/flowchart/star-command-flow.png)
 
 # **Features**
 
@@ -127,14 +127,19 @@ PEP8 online [(here)](http://pep8online.com/) was used to run through and check c
 
 ## ***Issues***
     
-    1. AI was only placing ships horizontally. User unable to place ships vertically. 
-        - Indentation error in build_craft() was causing issue. 
+1. AI was only placing ships horizontally. User unable to place ships vertically.
     
-    2. When being placed automatically, the 5-tile craft would only place 2 tiles on a populated board. 
-        - In the build_craft() fucntion, the y coordinate was using + 1 rather than + i, causing it to be calcualted as 2 tiles long. After chanign to + i, the issue was resolved. 
+    * Indentation error in build_craft() was causing issue. 
 
-    3. Game was not finished when all fleet was destroyed or all tiles filled. 
-        - The check_shot() function in the Board class was looking at fleet_map for a result rather than fleet_coords that was in the class' __init__. After updating this, the logic flow was completed to the is_fleet_destroyed function in the Game class and the game would complete. 
+2. When being placed automatically, the 5-tile craft would only place 2 tiles on a populated board. 
+
+    * In the build_craft() fucntion, the y coordinate was using + 1 rather than + i, 
+    causing it to be calculated as 2 tiles long. After chaning to + i, the issue was resolved. 
+
+3. Game was not finished when all fleet was destroyed or all tiles filled. 
+
+    * The check_shot() function in the Board class was looking at fleet_map for a result rather than fleet_coords that was in the class' __init__. 
+    After updating this, the logic flow was completed to the is_fleet_destroyed function in the Game class and the game would complete. 
 
 ## **Further Testing**
 
