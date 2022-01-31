@@ -3,7 +3,7 @@ from time import sleep
 from .craft import AsteroidDodger, Blaster, CometKiller, StarChaser, Destroyer
 from .helpers import InputHelper, ClearDisplayHelper
 
-class Board(InputHelper, ClearDisplayHelper): 
+class Board(InputHelper, ClearDisplayHelper):
     board_size = 10
     fleet_size = 5
 
@@ -16,7 +16,8 @@ class Board(InputHelper, ClearDisplayHelper):
         self.fleet_map = self.fleet_coords()
 
     def build_board(self):
-        self.board = [] #creates empty list to store ships
+        #creates empty list to store ships
+        self.board = []
         for row in range(self.board_size):
             self.board.append([])
             for _ in range(self.board_size):
@@ -24,7 +25,8 @@ class Board(InputHelper, ClearDisplayHelper):
         return self.board
 
     def build_guess_board(self):
-        self.guess_board = [] #creates empty list to store player guess
+        #creates empty list to store player guess
+        self.guess_board = []
         for row in range(self.board_size):
             self.guess_board.append([])
             for _ in range(self.board_size):
@@ -36,7 +38,8 @@ class Board(InputHelper, ClearDisplayHelper):
         Prints out both User and Guess board with headers
         """
         self.clear_terminal()
-        #taken reference for board build from here : https://github.com/rhenter/battleship-python
+        #taken reference for board build from here:
+        #https://github.com/rhenter/battleship-python
         print((" ") * 4 + f" Commander {self.owner}'s Fleet:              "
               "        Guess tracker:")
         print("    0  1  2  3  4  5  6  7  8  9             "
@@ -67,10 +70,10 @@ class Board(InputHelper, ClearDisplayHelper):
         fleet = []
         taken_coords = []
         craft_obj = [
-            AsteroidDodger, 
-            Blaster, 
-            CometKiller, 
-            StarChaser, 
+            AsteroidDodger,
+            Blaster,
+            CometKiller,
+            StarChaser,
             Destroyer]
 
         for i in range(self.fleet_size):
@@ -78,21 +81,25 @@ class Board(InputHelper, ClearDisplayHelper):
                 #Create random setup
                 random_start = (random.randint(0, 9), random.randint(0, 9))
                 rand_direction = random.choice(["r", "d"])
-                craft_inst = craft_obj[i](random_start, rand_direction, (random_start))
+                craft_inst = craft_obj[i](
+                    random_start, rand_direction, (random_start))
 
-            else: 
+            else:
                 #manual setup
                 self.print_board()
                 start_point = input(
-                    f"Commander {self.owner} where shall we place the {craft_obj[i].name}?\n"
+                    f"Commander {self.owner} where shall we\n"
+                    f"place the {craft_obj[i].name}?\n"
                     f"It is {craft_obj[i].length} spaces long."
                     "\nPlease enter your coordinates (e.g 2,4)\n"
                 ).strip(" ")
+
                 #checks coord input is valid and creates craft
                 start_point = self.coord_valid(start_point)
                 direction = self.direction_input()
-                craft_inst = craft_obj[i](start_point, direction, (start_point))
-            
+                craft_inst = craft_obj[i](
+                    (start_point), direction, (start_point))
+
             self.build_craft(self.auto_place, craft_inst, taken_coords)
             taken_coords.append(craft_inst.coordinates)
 
@@ -106,8 +113,8 @@ class Board(InputHelper, ClearDisplayHelper):
 
     def build_craft(self, auto_placement, craft, taken_coords):
         """
-        Builds craft in selected direction and lets User know if 
-        space is taken. 
+        Builds craft in selected direction and lets User know if
+        space is taken.
         """
         selected_placement = True
 
@@ -120,23 +127,29 @@ class Board(InputHelper, ClearDisplayHelper):
             for i in range(1, craft.length):
                 if craft.direction == "d" or craft.direction == "down":
                     next_space = (
-                        craft.start_point[0] + i, 
+                        craft.start_point[0] + i,
                         craft.start_point[1])
                     add_idx = 0
             
                 elif craft.direction == "r" or craft.direction == "right":
                     next_space = (
-                        craft.start_point[0], 
+                        craft.start_point[0],
                         craft.start_point[1] + i)
                     add_idx = 1
 
-                taken_space = self.is_space_taken(craft, taken_coords, next_space)
-                #check for craft leaving board and asks for new start point if needs to
+                taken_space = self.is_space_taken(
+                    craft, taken_coords, next_space)
+
+                #check for craft leaving board and asks
+                #for new start point if needs to
                 if craft.start_point[add_idx] + \
                     (craft.length - 1) > 9:
 
                     if auto_placement:
-                        craft.start_point = (random.randint(0, 9), random.randint(0, 9))
+                        craft.start_point = (
+                            random.randint(
+                                0, 9), random.randint(
+                                    0, 9))
                         craft.direction = random.choice(["r", "d"])
                         break
                     else:
@@ -148,8 +161,8 @@ class Board(InputHelper, ClearDisplayHelper):
                         craft.start_point = self.coord_valid(craft.start_point)
                         craft.direction = self.direction_input()
                         break
-                #If next space is not taken then add to temp list, check length
-                #and if match then return to coords
+                #If next space is not taken then add to temp list,
+                #check length and if match then return to coords
                 elif not taken_space:
                     temp_craft.append(next_space)
                     if len(temp_craft) == craft.length:
@@ -157,11 +170,13 @@ class Board(InputHelper, ClearDisplayHelper):
                         selected_placement = False
                         return craft.coordinates
 
-                #check remainder of spaces and if any taken will ask for new coords
+                #check remainder of spaces and if any
+                #taken will ask for new coords
                 else:
                     if auto_placement:
-                        craft.start_point = (random.randint(0, 9), random.randint(0, 9))
-                        craft.direction = random.choice(["r", "d"]) 
+                        craft.start_point = (random.randint(0, 9),
+                        random.randint(0, 9))
+                        craft.direction = random.choice(["r", "d"])
                         break
                     elif not auto_placement:
                         print("You already placed a craft there Commander")
@@ -172,13 +187,13 @@ class Board(InputHelper, ClearDisplayHelper):
                         craft.start_point = self.coord_valid(craft.start_point)
                         craft.direction = self.direction_input()
                         break
-        return craft.coordinates                 
+        return craft.coordinates            
 
     def direction_input(self):
         """
-        Ask user for direction to place craft. Only down or right as 
+        Ask user for direction to place craft. Only down or right as
         full compass is illogical in this instance. Loops until valid
-        inout given. 
+        inout given.
         """
         invalid_input = True
         while invalid_input:
@@ -216,7 +231,8 @@ class Board(InputHelper, ClearDisplayHelper):
         craft_record = {}
         for i in range(self.fleet_size):
             craft_record.update(
-                dict(zip(self.fleet[i].coordinates, self.fleet[i].id_list)))
+                dict(zip(self.fleet[i].coordinates,
+                     self.fleet[i].id_list)))
         return craft_record
 
     def manual_position(self, craft, auto_placement=False):
@@ -233,7 +249,7 @@ class Board(InputHelper, ClearDisplayHelper):
 
     def check_shot(self, guess):
         """
-        Checks guess from fleet dictionary, 
+        Checks guess from fleet dictionary,
         calls method to update damage of craft
         """
         result = self.fleet_map
@@ -250,7 +266,7 @@ class Board(InputHelper, ClearDisplayHelper):
 
     def update_damage(self, craft):
         """
-        Runs through ship damage and 
+        Runs through ship damage and
         updates when necessary
         """
         craft.damaged_tiles.append(True)
@@ -285,7 +301,6 @@ class Board(InputHelper, ClearDisplayHelper):
             print(f"Great shot {self.owner}! Hit!")
             sleep(2)
             
-
     def craft_remaining(self):
         """
         Reduce fleet by 1
