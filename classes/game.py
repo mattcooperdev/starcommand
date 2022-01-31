@@ -63,8 +63,8 @@ class Game(ClearDisplayHelper):
             play_round = computer.board.is_fleet_destroyed()
             #checks boolean, prints and exit
             if play_round is False:
-                print(f"Well done Commander {self.name}! You defeated"
-                        "the alien threat")
+                print(f"Well done Commander! \n"
+                       "You defeated the alien threat")
                 sleep(2)
                 print("Press any key to go to the main menu")
                 self.restart_game(player, computer)
@@ -94,8 +94,8 @@ class Game(ClearDisplayHelper):
                 continue
 
             elif name.lower() == "computer":
-                print("If there is any computer on board I would"
-                "not think it was you!\n")
+                print("\nIf there is any computer on board \n"
+                      "I would not think it was you!\n")
                 sleep(2)
                 print("Please select something other than that\n")
                 continue
