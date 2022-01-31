@@ -31,6 +31,15 @@ class Game(ClearDisplayHelper):
         options_menu = True
 
         while options_menu:
+            print("You have 5 craft stuck in space!\n")
+            sleep(2)
+            print("They are about to be attacked!\n")
+            sleep(2)
+            print("Man the plasma cannons and take aim at the enemy!\n")
+            sleep(2)
+            print("First to destroy the others fleet wins!!\n")
+            sleep(2)
+            print("Are you ready?\n")
             options = input("Press the 'S' key to play: \n").lower().strip(" ")
             if options == "s":
                 self.clear_terminal()

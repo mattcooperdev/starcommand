@@ -1,12 +1,13 @@
 #**Battleships**
 
-[View the live project here.](https://yescoops.github.io/oh-baby/)
+[View the live project here.](https://star-command.herokuapp.com/)
 
-This is an intercative baby quiz called Oh Baby! After recently becoming a father for the first time, I wanted to create something that would test my knowledge as well as being fun to play. It is designed to be responsive and accessible on a range of devices, making it easy to navigate for new and returning players.
+This program is a command-line version of the classic board game Battleships, deployed via the Heroku app. 
+It is a single-player version of the game, playing against a computerised player. 
 
 ---
 
-![device screens](assets/md-images/responsive.png)
+![Heroku](docs/screenshots/heroku.png)
 
 ___
 
@@ -23,46 +24,38 @@ ___
 
 
 
-### Languages Used
+### Languages 
 
 -   [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
 
-### Frameworks & Libraries Used
+### Libraries 
 
-1. [Google Fonts:](https://fonts.google.com/)
-    - Google fonts were used to import the 'Shadows into Light Too' and 'Amatic SC' fonts into the style.css file which is used on all pages throughout the project.
-1. [Font Awesome:](https://fontawesome.com/)
-    - Font Awesome was used on all pages throughout the website to add icons for aesthetic and UX purposes.
-1. [Git:](https://git-scm.com/)
-    - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
-1. [GitHub:](https://github.com/)
-    - GitHub is used to store the projects code after being pushed from Git.
-1. [Balsamiq:](https://balsamiq.com/)
-    - Balsamiq was used to create the [wireframes](https://github.com/) during the design process.
-1. [Pexels:](https://pexels.com)
-    - Pexels was used to provide some images for the Gigs and Connect sections of the build. 
-1. [JSHint](https://jshint.com/)
-    - JSHint was used for the validation of the script.js and questions.js files. 
+    For this project to work successfully, I used the following imported libraries:
+
+1. random:
+    - randint used to generate a random integer between 0 and 9 for automated placement of craft and the computer hit guess.
+
+1. time:
+    - importing the sleep function from the this library enabled me to delay the typed reposnse to the console for a nicer game flow. It also enabled certain hit or miss statements to be viewed before the terminal was cleared for the reprinting of the boards. 
+
+1. string:
+    - I used the ".capwords()" function when a User enters their name to give them correct casing. 
+
+1. os:
+    - Used to clear the terminal so the screen could reset between input and keep everything clean.
 
 ---
 
 ## Testing
 
-The W3C Markup Validator and CSS Validator Services were used to validate all pages of the project to ensure there were no syntax errors in there. JSHint was used to validate the Java Script with no errors highlighted. 
-
--   W3C Markup Validator - [Results for Main Page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fyescoops.github.io%2Foh-baby%2F) 
-
--   W3C CSS Validator - [Results for Main Page](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fyescoops.github.io%2Foh-baby%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
-
+PEP8 online [(here)](http://pep8online.com/) was used to run through and check code met all validations and conventions. All pages passed with no issues, except for the "no newline at end of file" warning which is a known issue with this particualr CI template that I am using. 
 
 ---
 
 
 ### Further Testing
 
--   The Website was tested on Google Chrome, Firefox, Microsoft Edge and Safari browsers.
--   The Website was tested through Responsinator [(results here)](http://www.responsinator.com/?url=https%3A%2F%2Fyescoops.github.io%2Foh-baby%2F) to check any responsiveness issues. 
--   The website was viewed on a variety of devices such as Desktop, Apple Laptop, Oppo G13 mobile, iPhone 8 & iPhoneX.
+-   The app was tested on Google Chrome, Firefox, Microsoft Edge and Safari browsers.
 -   A large amount of testing was done to ensure that functionality was working as expected.
 -   Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
 
@@ -118,13 +111,19 @@ The project was deployed to [Heroku](https://www.heroku.com) using the below pro
    * Select the correct branch for deployment from the drop-down menu and click the "Deploy Branch" button for manual deployment. 
 ---
 
-## Credits
+# **Credits**
+* Everything you need to know about Classes in Python by Keith Galli was an extremely useful resource for me - [Here](https://youtu.be/tmY6FEF8f1o) 
+* The idea to decorate the board with numbers for indexing the shots was from [Knowledge Mavens youtube channel](https://youtu.be/alJH_c9t4zw)
+* Clear console function came from [Geeks for Geeks](https://www.geeksforgeeks.org/clear-screen-python/)
+* [lucid chart.com](https://www.lucidchart.com/) was used to create the logic flow chart "flowchart.jpeg"
+* [ASCII Art text generator](http://www.network-science.de/ascii/) used for the welcome screen text.
+* To understand the game logic and how to go ahead with the build, I used this video on the [Devpost Youtube channel](https://youtu.be/zSQIGzmcp2I)  
+* To better understand the enumerate() and zip() fucntions I came to [nkmk](https://note.nkmk.me/en/python-for-enumerate-zip/)
 
 
+# **Code**
 
-### Code
-
--   The idea for the project was inspired by a video by [Web Dev Simplified](https://www.youtube.com/watch?v=riDzcEQbX6k&ab_channel=WebDevSimplified)
+-   The idea for the project was inspired by a video by [Robert Heaton](https://www.youtube.com/watch?v=Gi0Fdyhk1_0&t=616s&ab_channel=RobertHeaton)
 
 ### Content
 
@@ -136,6 +135,8 @@ The project was deployed to [Heroku](https://www.heroku.com) using the below pro
 -   My Mentor Antonio Rodriguez for his continuous helpful feedback.
 
 -   My partner Mor for her testing, suggestions and support throughout this build. 
+
+-   The tutors at Code Institute for assisting me at the midnight hour of submission. 
 
 
 
