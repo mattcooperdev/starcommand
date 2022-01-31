@@ -1,4 +1,4 @@
-#**Battleships**
+# **Battleships**
 
 [View the live project here.](https://star-command.herokuapp.com/)
 
@@ -7,28 +7,101 @@ It is a single-player version of the game, playing against a computerised player
 
 ---
 
-![Heroku](docs/screenshots/heroku.png)
+![Welcome Screen](docs/screenshots/heroku.png)
 
 ___
 
-##**Table of Contents**
-* [**Battleships**](#battlehips)
+## **Table of Contents**
+* [**Battleships**](#battleships)
+* [**Planning**](#planning)
+* [**Features**](#features)
+* [**Data Model**](#data-model)
+* [**Languages**](#languages)
+* [**Libraries**](#libraries)
+* [**Testing**](#testing)
+    * [***Issues***](#issues)
+* [**Further Testing**](#further-testing)
+    * [***Known Bugs***](#known-bugs)
+    * [***Improvements***](#improvements)
+* [**Deployment**](#deployment)
+* [**Credits**](#credits)
+* [**Code**](#code)
+    * [***Content***](#content)
+    * [***Acknowledgements***](#acknowledgements)
 
 
-## Features
-
--   Responsive on all device sizes
-
--   Interactive elements
 
 
 
 
-### Languages 
+
+# **Planning**
+## ***User Stories:***
+As a User, I want to be able to:
+* Understand what the game is straight away.
+* To have a fun time playing the game with easy to follow commands.
+
+## ***Aim of Site***
+1. Make it clear what the game is without need for explaination.
+    * A welcome screen with ascii art and scrolling story will help achieve this.
+1. Give a valid and clear response to all User input without the game crashing. 
+    * All user input is handled and any exception is returned with a message to the User. 
+1. Have an enjoyable experience of a classic kids game. 
+    * The feedback given through the terminal without it getting cluttered on screen achieves this. 
+
+## ***Flow Chart***
+To explain the flow of the game, I created a flow chart:
+
+![Game Logic Flow](docs/screenshots/star-command-flow.png)
+
+# **Features**
+
+## ***Welcome Screen:***
+Here the User will be given a brief outline of the story and rules and will be prompted to start the game:
+
+![Welcome screen](docs/screenshots/welcome.png)
+
+## ***Name Input/Setup:***
+After being prompted for their name, the User will be asked if they wish to manually place their ships or allow the computer to do it for them:
+
+![Name Input](docs/screenshots/name-input.png)
+
+## ***Manual placement:***
+If the User selects to set up their fleet manually, they will be presented with a board to do so:
+
+![Manual Placement](docs/screenshots/manual-placement.png)
+
+If the User puts in a invalid location they will be notified:
+
+![Valid direction](docs/screenshots/valid-direction.png)
+
+If their decision would place the craft out of bounds, the follwoing message will advise them such:
+
+![Out of Bounds](docs/screenshots/out-of-bounds.png)
+
+## ***Firing round:***
+
+Once the User enters the firing round, they will be presented with a guess board and their own board with their fleet placed. They will be prompted for an input and will be advised if their chosen coordinates are a Hit:
+
+![Hit Shot](docs/screenshots/hit-shot.png)
+
+Or a Miss:
+
+![Miss Shot](docs/screenshots/miss-shot.png)
+
+They will also be advised of an invalid input:
+
+![Invalid input](docs/screenshots/invalid-input.png)
+
+## **Data Model**
+
+To stay in line with the OOP requirements of the project, I decided to make classes for the Board, Player, Craft and Ships. There is also a Helper class that utilises functions that can be called among all classes. Even though people may see this as surplus to requirements, I feel that this was the best plan of action if I wanted to further develop the game at a later date. 
+
+## **Languages** 
 
 -   [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
 
-### Libraries 
+## **Libraries** 
 
     For this project to work successfully, I used the following imported libraries:
 
@@ -46,24 +119,34 @@ ___
 
 ---
 
-## Testing
+## **Testing**
 
 PEP8 online [(here)](http://pep8online.com/) was used to run through and check code met all validations and conventions. All pages passed with no issues, except for the "no newline at end of file" warning which is a known issue with this particualr CI template that I am using. 
 
 ---
 
+## ***Issues***
+    
+    1. AI was only placing ships horizontally. User unable to place ships vertically. 
+        - Indentation error in build_craft() was causing issue. 
+    
+    2. When being placed automatically, the 5-tile craft would only place 2 tiles on a populated board. 
+        - In the build_craft() fucntion, the y coordinate was using + 1 rather than + i, causing it to be calcualted as 2 tiles long. After chanign to + i, the issue was resolved. 
 
-### Further Testing
+    3. Game was not finished when all fleet was destroyed or all tiles filled. 
+        - The check_shot() function in the Board class was looking at fleet_map for a result rather than fleet_coords that was in the class' __init__. After updating this, the logic flow was completed to the is_fleet_destroyed function in the Game class and the game would complete. 
+
+## **Further Testing**
 
 -   The app was tested on Google Chrome, Firefox, Microsoft Edge and Safari browsers.
 -   A large amount of testing was done to ensure that functionality was working as expected.
 -   Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
 
-### Known Bugs
+## ***Known Bugs***
 
 -  If the User inputs their coordinates whilst it is the Computer's turn, their choice will still register. This will either result in an 'automatic' shot when it comes to their turn, or if they type more digits, a validation error. 
 
-### Improvements
+## ***Improvements***
 
 -   I would like to implement addditional difficulty AI settings using a checkerboard technique for initial placement [(view)](https://www.youtube.com/watch?v=jMpbYpaKtao&ab_channel=KeithGalli), and an awareness to take shot at surrounding tiles once they have a hit. 
 -   A 2-player functionality. 
@@ -111,59 +194,30 @@ The project was deployed to [Heroku](https://www.heroku.com) using the below pro
    * Select the correct branch for deployment from the drop-down menu and click the "Deploy Branch" button for manual deployment. 
 ---
 
-# **Credits**
+## **Credits**
 * Everything you need to know about Classes in Python by Keith Galli was an extremely useful resource for me - [Here](https://youtu.be/tmY6FEF8f1o) 
 * The idea to decorate the board with numbers for indexing the shots was from [Knowledge Mavens youtube channel](https://youtu.be/alJH_c9t4zw)
 * Clear console function came from [Geeks for Geeks](https://www.geeksforgeeks.org/clear-screen-python/)
 * [lucid chart.com](https://www.lucidchart.com/) was used to create the logic flow chart "flowchart.jpeg"
 * [ASCII Art text generator](http://www.network-science.de/ascii/) used for the welcome screen text.
+* [Hayoi's Programming Blog](https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html) helped with the use of Unicode colour usage.
 * To understand the game logic and how to go ahead with the build, I used this video on the [Devpost Youtube channel](https://youtu.be/zSQIGzmcp2I)  
 * To better understand the enumerate() and zip() fucntions I came to [nkmk](https://note.nkmk.me/en/python-for-enumerate-zip/)
 
 
-# **Code**
+## **Code**
 
 -   The idea for the project was inspired by a video by [Robert Heaton](https://www.youtube.com/watch?v=Gi0Fdyhk1_0&t=616s&ab_channel=RobertHeaton)
 
-### Content
+## ***Content***
 
 -   All content was written by the Author, Matt Cooper, except where commented in the code or mentioned above. 
 
 
-### Acknowledgements
+## ***Acknowledgements***
 
 -   My Mentor Antonio Rodriguez for his continuous helpful feedback.
 
 -   My partner Mor for her testing, suggestions and support throughout this build. 
 
 -   The tutors at Code Institute for assisting me at the midnight hour of submission. 
-
-
-
-
-## Reminders
-
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
-
