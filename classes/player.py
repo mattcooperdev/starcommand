@@ -3,6 +3,7 @@ from time import sleep
 from .board import Board
 from .helpers import InputHelper, ClearDisplayHelper
 
+
 class Player(InputHelper, ClearDisplayHelper):
     """
     Creates player object, chooses craft setup, takes a shot
@@ -20,14 +21,14 @@ class Player(InputHelper, ClearDisplayHelper):
 
     @staticmethod
     def quick_start():
-      """
-      Asks player if they want manual or auto setup of craft
-      """
-      invalid_input = True
-      while invalid_input:
+        """
+        Asks player if they want manual or auto setup of craft
+        """
+        invalid_input = True
+        while invalid_input:
             setup_type = input(
-              "How would you like to setup your craft?\n"
-              "(Q)uickly or (M)anually?\n").lower().strip(" ")
+                "How would you like to setup your craft?\n"
+                "(Q)uickly or (M)anually?\n").lower().strip(" ")
             if setup_type == "quick" or setup_type == "q":
                 invalid_input = False
                 return True
@@ -81,7 +82,7 @@ class Player(InputHelper, ClearDisplayHelper):
         print(f"{self.name}'s turn")
         guess = self.take_shot()
         guess_hit_check = opponent.board.check_shot(guess)
-        #update board
+        # update board
         self.board.update_board(guess, guess_hit_check, opponent)
         if self.name != "Computer":
             self.board.print_board()

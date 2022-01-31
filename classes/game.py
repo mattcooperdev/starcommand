@@ -3,6 +3,7 @@ from time import sleep
 from .player import Player
 from.helpers import ClearDisplayHelper
 
+
 class Game(ClearDisplayHelper):
     """
     Holds main game by calling objects from classes
@@ -12,33 +13,30 @@ class Game(ClearDisplayHelper):
 
     def welcome(self):
 
-
         print("""\u001b[32;1m
-          _____ _                         
-         / ____| |                                       
-        | (___ | |_ __ _ _ __                              
-         \___ \| __/ _` | '__|                             
-         ____) | || (_| | |                                
+          _____ _ 
+         / ____| |
+        | (___ | |_ __ _ _ __ 
+         \___ \| __/ _` | '__|
+         ____) | || (_| | |
         |_____/ \__\__,_|_|                              _ 
          / ____|                                        | |
         | |     ___  _ __ ___  _ __ ___   __ _ _ __   _ | |
         | |    / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` |
         | |___| (_) | | | | | | | | | | | (_| | | | | (_| |
-         \_____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|                                                      
+         \_____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|
 
         """)
 
         options_menu = True
 
         while options_menu:
-            options = input("          Press the 'S' key to play: \n").lower().strip(" ")
+            options = input("Press the 'S' key to play: \n").lower().strip(" ")
             if options == "s":
                 self.clear_terminal()
                 self.set_players()
             else:
                 print(" Your input was not recognised.")
-
-
 
     def set_players(self):
         """
@@ -61,7 +59,7 @@ class Game(ClearDisplayHelper):
 
             player.player_turn(computer)
             play_round = computer.board.is_fleet_destroyed()
-            #checks boolean, prints and exit
+            # checks boolean, prints and exit
             if play_round is False:
                 print(f"Well done Commander! \n"
                        "You defeated the alien threat")
@@ -70,10 +68,10 @@ class Game(ClearDisplayHelper):
                 self.restart_game(player, computer)
                 break
 
-            #checks same for computer win
+            # checks same for computer win
             computer.player_turn(player)
             play_round = player.board.is_fleet_destroyed()
-            if play_round is False: 
+            if play_round is False:
                 print("Your space fleet has been detroyed!\n")
                 sleep(2)
                 print("Press any key to go to the main menu")
