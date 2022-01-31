@@ -236,7 +236,7 @@ class Board(InputHelper, ClearDisplayHelper):
         Checks guess from fleet dictionary, 
         calls method to update damage of craft
         """
-        result = self.fleet_map
+        result = self.fleet_coords
         result = result.get(guess)
         craft = None
         if result:
