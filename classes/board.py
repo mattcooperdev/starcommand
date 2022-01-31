@@ -127,11 +127,11 @@ class Board(InputHelper, ClearDisplayHelper):
                 elif craft.direction == "r" or craft.direction == "right":
                     next_space = (
                         craft.start_point[0], 
-                        craft.start_point[1] + 1)
+                        craft.start_point[1] + i)
                     add_idx = 1
 
                 taken_space = self.is_space_taken(craft, taken_coords, next_space)
-                #check for craft leaving baord and asks for new start point if needs to
+                #check for craft leaving board and asks for new start point if needs to
                 if craft.start_point[add_idx] + \
                     (craft.length - 1) > 9:
 
@@ -144,7 +144,7 @@ class Board(InputHelper, ClearDisplayHelper):
                         craft.start_point = input(
                             "Pick a different start coordinate for "
                             f"your {craft.name}. \nPlease enter row then column "
-                            "e.g 1,6: \n").strip(" ")
+                            "(e.g 1,6) \n").strip(" ")
                         craft.start_point = self.coord_valid(craft.start_point)
                         craft.direction = self.direction_input()
                         break
@@ -168,7 +168,7 @@ class Board(InputHelper, ClearDisplayHelper):
                         craft.start_point = input(
                             "Pick a different start coordinate for "
                             f"your {craft.name}. \nPlease enter row then column "
-                            "e.g 74: \n").strip(" ")
+                            "(e.g 74) \n").strip(" ")
                         craft.start_point = self.coord_valid(craft.start_point)
                         craft.direction = self.direction_input()
                         break
@@ -183,7 +183,7 @@ class Board(InputHelper, ClearDisplayHelper):
         invalid_input = True
         while invalid_input:
             craft_direction = input(
-                "Which direction would you want the craft to face?\n"
+                "Which direction would you like the craft to face?\n"
                 "To the (r)ight or (d)own: \n"
             ).lower().strip(" ")
             if craft_direction == "right" or craft_direction == "r":
@@ -282,7 +282,7 @@ class Board(InputHelper, ClearDisplayHelper):
                 self.print_board()
             else:
                 opponent.board.print_board()
-            print(f"{self.owner} made a perfect Hit!")
+            print(f"Great shot {self.owner}! Hit!")
             sleep(2)
             
 

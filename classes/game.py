@@ -101,7 +101,7 @@ class Game(ClearDisplayHelper):
                 continue
 
             name = string.capwords(name)
-            print(f"\nWelcome Commader {name} \n")
+            print(f"\nWelcome Commander {name} \n")
             return name
 
     def restart_game(self, player1, player2):

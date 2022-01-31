@@ -1,4 +1,5 @@
 import random
+from time import sleep
 from .board import Board
 from .helpers import InputHelper, ClearDisplayHelper
 
@@ -63,8 +64,9 @@ class Player(InputHelper, ClearDisplayHelper):
 
                 if previous_guess:
                     print(
-                        "Commander you have already fired there..."
+                        "You have already fired there..."
                     )
+                    sleep(2)
                     continue
                 else:
                     self.board.print_board()
