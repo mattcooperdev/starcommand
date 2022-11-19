@@ -1,6 +1,6 @@
 # **Battleships**
 
-[View the live project here.](https://star-command.herokuapp.com/)
+[View the live project here.](https://starcommand.onrender.com)
 
 This program is a command-line version of the classic board game Battleships, deployed via the Heroku app. 
 It is a single-player version of the game, playing against a computerised player. 
